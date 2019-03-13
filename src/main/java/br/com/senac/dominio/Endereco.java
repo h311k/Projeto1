@@ -27,8 +27,13 @@ public class Endereco implements Serializable {
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name="auno_id")
+	@JoinColumn(name="aluno_id")
 	private Aluno aluno;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="usuario_id")
+	private Usuario usuario;
 	
 	@ManyToOne
 	@JoinColumn(name="cidade_id")
@@ -88,6 +93,14 @@ public class Endereco implements Serializable {
 
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Cidade getCidade() {

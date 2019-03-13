@@ -11,10 +11,12 @@ import br.com.senac.dominio.Aluno;
 import br.com.senac.dominio.Cidade;
 import br.com.senac.dominio.Endereco;
 import br.com.senac.dominio.Estado;
+import br.com.senac.dominio.Usuario;
 import br.com.senac.repositorio.AlunoRepositorio;
 import br.com.senac.repositorio.CidadeRepositorio;
 import br.com.senac.repositorio.EnderecoRepositorio;
 import br.com.senac.repositorio.EstadoRepositorio;
+import br.com.senac.repositorio.UsuarioRepositorio;
 
 @Component
 public class Init implements ApplicationListener<ContextRefreshedEvent> {
@@ -30,6 +32,9 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 	
 	@Autowired
 	EnderecoRepositorio enderecoRepositorio;
+	
+	@Autowired
+	UsuarioRepositorio usuarioRepositorio;
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -64,6 +69,15 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 		
 		cidadeRepositorio.saveAll(Arrays.asList(cidade1,cidade2,cidade3));
 		
+		Usuario usuario = new Usuario();
+		usuario.setNome("user");
+		usuario.setSobrenome("lastName");
+		usuario.setEmail("user@example.com");
+		usuario.setSenha("123456");
+		
+		alunoRepositorio.save(aluno1);
+		usuarioRepositorio.save(usuario);
+		
 		Endereco end1 = new Endereco();
 		end1.setRua("Rua dos Andradas");
 		end1.setNumero("20");
@@ -72,21 +86,12 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 		end1.setCep("22341-175");
 		end1.setCidade(cidade1);
 		end1.setAluno(aluno1);
-		
-		Endereco end2 = new Endereco();
-		end2.setRua("Rua dos Marrecos");
-		end2.setNumero("68");
-		end2.setBairro("Laje");
-		end2.setComplemento("Fundos");
-		end2.setCep("2157-201");
-		end2.setCidade(cidade2);
-		end2.setAluno(aluno1);
+		end1.setUsuario(usuario);
 		
 		aluno1.getTelefones().addAll(Arrays.asList("21212121","23232323"));
 		
-		alunoRepositorio.save(aluno1);
+		enderecoRepositorio.saveAll(Arrays.asList(end1));
 		
-		enderecoRepositorio.saveAll(Arrays.asList(end1,end2));
 	}
 
 }

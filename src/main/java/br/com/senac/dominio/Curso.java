@@ -84,7 +84,10 @@ public class Curso implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
+	
+	public Curso() {
+		
+	}
 
 	public Curso(Integer id, String nome, String descricao, double preco) {
 		super();

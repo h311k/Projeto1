@@ -20,6 +20,9 @@ public class Categoria {
 	private Integer id;
 	
 	private String nome;
+	
+	@ManyToMany(mappedBy="categorias")
+	private List<Curso> cursos = new ArrayList<>();
 
 	public Categoria(Integer id, String nome) {
 		super();
@@ -49,6 +52,14 @@ public class Categoria {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public List<Curso> getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
 	}
 	
 

@@ -30,8 +30,8 @@
 						<td th:text="${cat.nome}"></td>
 						<td>
 							<div class="btn-group pull-right">
-								<a class="btn btn-sm btn-primary"> Editar</a>
-								<a class="delete btn btn-sm btn-danger"> Editar</a>
+								<a class="btn btn-sm btn-primary" th:href="@{/alterarCategoria/{id}/(id=${cat.id})}">Alterar</a>
+								<a class="delete btn btn-sm btn-danger" th:href="@{/excluir/{id}/(id=${cat.id})}">Excluir</a>
 							</div>
 						</td>
 					</tr>
@@ -39,7 +39,7 @@
 			</table>
 		</div>
 		<div class="panel-footer">
-			<a class="btn btn-sm btn-success">Adicionar</a>
+			<a class="btn btn-sm btn-success" th:href="@{/adicionar/}">Adicionar</a>
 		</div>
 	</div>
 </body>
